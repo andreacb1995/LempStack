@@ -42,21 +42,22 @@ document.addEventListener('DOMContentLoaded', function() {
     modalTitle.textContent = 'Nuevo Cliente';
     submitButton.innerHTML = '<i class="fas fa-save"></i> Guardar'; // Añadir ícono al botón de guardar
 
-    formModal.style.display = 'flex'; // Mostrar el modal al hacer clic en el botón de añadir cliente
+    abrirModal(formModal);
+
   });
 
   // Cerrar el modal al hacer clic en la 'x'
   closeModal.addEventListener('click', (event) => {
     event.stopPropagation();
-    formModal.style.display = 'none'; // Ocultar el modal
+    cerrarModal(formModal);
   });
 
   // Cerrar el modal si se hace clic fuera del contenido del modal
   window.addEventListener('click', (event) => {
     if (event.target === formModal) {
-      formModal.style.display = 'none';
+      cerrarModal(formModal);
     } else if (event.target === confirmDeleteModal) {
-      confirmDeleteModal.style.display = 'none';
+      cerrarModal(confirmDeleteModal);
     }
     // Cerrar todos los menús de opciones si se hace clic fuera de los menús o los botones de opciones
     const allOptionsMenus = document.querySelectorAll('.options-menu');
@@ -166,8 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
     modalTitle.textContent = 'Cliente';
     submitButton.innerHTML = '<i class="fas fa-edit"></i> Modificar'; // Añadir ícono al botón de modificar
 
-    // Abrir el modal
-    formModal.style.display = 'flex';
+    abrirModal(formModal);
   }
 
   // Cargar los clientes cuando se carga la página
@@ -226,11 +226,6 @@ document.addEventListener('DOMContentLoaded', function() {
     descripcion.textContent = cliente.telefono;
     cardBody.appendChild(descripcion);
     card.appendChild(cardBody);
-
-    // Abrir el modal al hacer clic en la tarjeta (en modo visualización)
-    card.addEventListener('click', () => {
-      verCliente(cliente);
-    });
 
     // Añadir botón de opciones
     const optionsButton = document.createElement('button');
@@ -363,3 +358,34 @@ function cargarPaises() {
 document.addEventListener('DOMContentLoaded', cargarPaises);
 
 
+function abrirModal(modal) {
+  // Asegurar que la página principal está en la parte superior antes de desactivar el scroll
+  window.scrollTo(0, 0);
+
+  // Desactivar el scroll de la ventana principal cuando el modal está abierto
+  document.body.style.overflow = 'hidden';
+
+  // Mostrar el modal
+  modal.style.display = 'flex';
+
+  // Buscar el elemento que tiene el scroll interno
+  const modalBody = modal.querySelector('.modal-body');
+  if (modalBody) {
+    modalBody.scrollTop = 0; // Restablecer el scroll del contenido del modal
+  } else {
+    modal.scrollTop = 0; // En caso de que modalBody no exista, restablecer el scroll del modal
+  }
+
+  // Ajustar el foco al modal para asegurarse de que se vea en la pantalla
+  modal.focus();
+}
+
+
+
+function cerrarModal(modal) {
+  // Ocultar el modal
+  modal.style.display = 'none';
+
+  // Reactivar el scroll de la ventana principal cuando se cierra el modal
+  document.body.style.overflow = 'auto';
+}
