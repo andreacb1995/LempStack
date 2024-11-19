@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pantalla de Clientes</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Incluimos Font Awesome -->
+</head>
+<body class="clientes">
+  <header>
+    <h1>Clientes</h1>
+    <button id="addClientButton"><i class="fas fa-plus"></i></button> <!-- Botón de añadir cliente -->
+  </header>
+  
+  <div class="cards-container" id="cardsContainer">
+    <!-- Las tarjetas de clientes se crearán aquí dinámicamente -->
+  </div>
+
+  <!-- Modal para añadir cliente -->
+  <div id="formModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Nuevo Cliente</h2>
+        <span class="close" id="closeModal">&times;</span>
+      </div>
+      <div class="modal-body">
+        <form id="addClientForm">
+          <div class="input-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+          </div>
+          <div class="input-group">
+            <label for="apellidos">Apellidos:</label>
+            <input type="text" id="apellidos" name="apellidos" required>
+          </div>
+          <div class="input-group">
+            <label for="telefono">Teléfono:</label>
+            <input type="text" id="telefono" name="telefono" required>
+          </div>
+          <div class="input-group">
+            <label for="dni">DNI:</label>
+            <input type="text" id="dni" name="dni" required>
+          </div>
+          <div class="input-group">
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" name="direccion" required>
+          </div>
+          <div class="input-group">
+            <label for="codigo_postal">Código Postal:</label>
+            <input type="text" id="codigo_postal" name="codigo_postal" required>
+          </div>
+          <div class="input-group">
+            <label for="pais">País:</label>
+            <select id="pais" name="pais" required>
+              <option value="">Selecciona un país</option>
+            </select>          
+          </div>
+          <div class="input-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="input-group">
+            <label for="estado">Estado:</label>
+            <select id="estado" name="estado" required>
+              <option value="Activo">Activo</option>
+              <option value="Inactivo">Inactivo</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="notas">Notas:</label>
+            <textarea id="notas" name="notas" rows="4"></textarea>
+          </div>
+          <div class="input-group">
+            <label for="foto">URL de la Foto:</label>
+            <input type="text" id="foto" name="foto">
+          </div>
+          <button type="submit">Guardar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Modal para confirmar eliminación de cliente -->
+  <div id="confirmDeleteModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeDeleteModal">&times;</span>
+      <p>¿Estás seguro de que deseas eliminar este cliente?</p>
+      <div>
+        <button id="confirmDeleteButton" class="confirm-button">Eliminar</button>
+        <button id="cancelDeleteButton" class="cancel-button">Cancelar</button>
+      </div>
+    </div>
+  </div>
+  <div id="successModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <span class="close" id="closeSuccessModal">&times;</span>
+      <p id="successModalMessage">¡Datos guardados correctamente!</p>
+    </div>
+  </div>
+  
+  <script src="clientes.js"></script> <!-- JavaScript para manejar la lógica del formulario y el modal -->
+</body>
+</html>

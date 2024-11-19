@@ -1,0 +1,533 @@
+/* Definición de Variables de Color */
+:root {
+  --color-black: #000000;              /* Negro profundo */
+  --color-dark-grey-1: #191919;        /* Gris oscuro 1 */
+  --color-dark-grey-2: #707070;        /* Gris oscuro 2 */
+  --color-light-grey-1: #AEAEAE;       /* Gris claro 1 */
+  --color-light-grey-2: #CCCCCC;       /* Gris claro 2 */
+  --color-mid-grey-1: #808080;         /* Gris medio 1 */
+  --color-mid-grey-2: #5A5A5A;         /* Gris medio 2 */
+  --color-neutral-grey: #333333;       /* Gris neutro */
+
+  /* Asignación de colores específicos para el diseño */
+  --color-body-bg: var(--color-light-grey-2);
+  --color-header-bg: var(--color-dark-grey-1);
+  --color-primary: var(--color-mid-grey-2);             /* Gris medio 2 para los botones principales */
+  --color-primary-hover: var(--color-neutral-grey);     /* Gris neutro para hover */
+  --color-success: var(--color-dark-grey-2);            /* Gris oscuro 2 para el botón de añadir cliente */
+  --color-success-hover: var(--color-mid-grey-1);       /* Gris medio 1 para hover */
+  --color-text-main: var(--color-dark-grey-1);          /* Gris oscuro 1 para el texto principal */
+  --color-card-bg: #ffffff;                             /* Fondo blanco para las tarjetas */
+  --color-input-border: var(--color-light-grey-1);      /* Gris claro 1 para el borde de los inputs */
+  --color-error: #ff4d4d; /* Rojo brillante para el botón de eliminar */
+  --color-error-hover: #e60000; /* Rojo más oscuro para hover */                       /* Marrón rojizo oscuro para hover */
+  --color-cancel: var(--color-mid-grey-1);              /* Gris medio 1 para cancelar */
+  --color-cancel-hover: var(--color-neutral-grey);      /* Gris neutro para hover */
+}
+
+/* Estilos Globales */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-body-bg);
+  color: var(--color-text-main);
+  overflow-x: hidden; /* Evitar desplazamiento horizontal */
+}
+
+/* Estilos para la Página de Login */
+.login-container {
+  background-color: var(--color-light-grey-2);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-title {
+  font-size: 28px;
+  margin-bottom: 25px;
+  color: var(--color-primary);
+}
+
+.login-container form {
+  background: var(--color-card-bg);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  width: 320px;
+  text-align: center;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: var(--color-text-main);
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid var(--color-input-border);
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.error-message {
+  color: var(--color-error);
+  font-size: 14px;
+  margin-top: 10px;
+  display: none;
+}
+
+/* Encabezado de la Página de Clientes */
+header {
+  background-color: var(--color-header-bg);
+  color: white;
+  padding: 1px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  position: relative;
+}
+
+/* Botón para Añadir Cliente en el Header */
+#addClientButton {
+  background-color: var(--color-success);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 24px;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  position: absolute;
+  right: 30px;
+  top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#addClientButton:hover {
+  background-color: var(--color-success-hover);
+}
+
+/* Contenedor de Tarjetas de Clientes */
+.cards-container {
+  display: flex; /* Usamos flexbox en lugar de grid */
+  flex-wrap: wrap; /* Permitir que las tarjetas salten a una nueva fila si no caben */
+  gap: 10px; /* Reducir el espacio entre las tarjetas */
+  padding: 20px;
+  justify-content: center; /* Centramos las tarjetas dentro del contenedor */
+  max-width: 1200px;
+  margin: 0 auto; /* Centrar el contenedor dentro de la página */
+}
+
+/* Tarjeta de Cliente */
+.card {
+  background-color: var(--color-card-bg);
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  width: 240px;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  margin: 5px; /* Margen mínimo para evitar que se superpongan */
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--color-primary);
+  margin-bottom: 15px;
+}
+
+.card-body h2 {
+  font-size: 18px;
+  margin: 0;
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+.card-body p {
+  font-size: 14px;
+  margin-top: 8px;
+  color: var(--color-dark-grey-2);
+}
+
+/* Botón de Opciones de la Tarjeta */
+.options-button {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  font-size: 18px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.options-button:hover {
+  background-color: var(--color-primary-hover);
+}
+
+/* Modal Estilo */
+.modal {
+  display: none; /* Oculto por defecto */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro translúcido */
+  display: flex; /* Flexbox para centrar el contenido del modal */
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: var(--color-card-bg);
+  width: 90%;
+  max-width: 600px;
+  max-height: 85vh;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.modal-header {
+  padding: 5px;
+  background-color: var(--color-primary);
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover, .close:focus {
+  color: var(--color-light-grey-1);
+}
+
+.modal-body {
+  padding: 20px;
+  overflow-y: auto; /* Añadir scroll al contenido del modal */
+  height: calc(85vh - 70px);
+}
+
+/* Estilo del Formulario en el Modal */
+#addClientForm {
+  display: flex;
+  flex-direction: column;
+}
+
+#addClientForm .input-group {
+  margin-bottom: 20px;
+}
+
+#addClientForm label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+#addClientForm input, #addClientForm select, #addClientForm textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--color-input-border);
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+#addClientForm textarea {
+  resize: vertical;
+}
+
+button[type="submit"] {
+  display: block; /* Necesario para centrar con margin */
+  margin: 20px auto; /* Centrar horizontalmente y ajustar margen superior/inferior */
+  padding: 8px 12px; /* Relleno compacto */
+  font-size: 16px; /* Texto más pequeño */
+  border-radius: 5px; /* Bordes redondeados */
+  background-color: var(--color-primary); /* Color del botón */
+  color: white; 
+  border: none; 
+  cursor: pointer; 
+  width: 150px; 
+  text-align: center; 
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: var(--color-primary-hover); /* Cambiar color al pasar el cursor */
+}
+
+/* Botones del modal de confirmación */
+.confirm-button {
+  background-color: var(--color-error);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.confirm-button:hover {
+  background-color: var(--color-error-hover);
+}
+
+.cancel-button {
+  background-color: var(--color-cancel);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancel-button:hover {
+  background-color: var(--color-cancel-hover);
+}
+
+/* Menú de opciones emergente en la tarjeta del cliente */
+.options-menu {
+  position: absolute;
+  bottom: 60px;
+  right: 5px;
+  background-color: var(--color-light-grey-2);
+  border: 2px solid var(--color-dark-grey-2);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: none; /* Oculto por defecto */
+  z-index: 10;
+  overflow: hidden; /* Evitar que el contenido se desborde */
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.options-menu.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.options-menu button {
+  background-color: transparent;
+  border: none;
+  padding: 10px;
+  text-align: left;
+  width: 100%;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.options-menu button:hover {
+  background-color: var(--color-light-grey-1);
+}
+
+/* Botón de Modificar */
+.options-menu button.modify-button {
+  color: var(--color-primary);
+}
+
+.options-menu button.modify-button:hover {
+  background-color: var(--color-light-grey-1);
+  color: var(--color-primary-hover);
+}
+
+/* Botón de Eliminar */
+.options-menu button.delete-button {
+  color: var(--color-error);
+}
+
+.options-menu button.delete-button:hover {
+  background-color: var(--color-light-grey-1);
+  color: var(--color-error-hover);
+}
+
+.options-menu button:hover {
+  background-color: var(--color-light-grey-1);
+}
+
+/* Iconos de los Botones */
+.options-menu button i {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+/* Mejorando la Visibilidad y Separación del Menú */
+.options-menu button:not(:last-child) {
+  border-bottom: 1px solid var(--color-input-border); /* Línea divisoria entre los botones */
+}
+
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .cards-container {
+    justify-content: center; /* Mantener centrado en pantallas más pequeñas */
+  }
+  .card {
+    width: 90%;
+  }
+
+  .modal-content {
+    width: 95%;
+  }
+}
+
+/* Ventana de confirmación de eliminación */
+#confirmDeleteModal .modal-content {
+  background-color: var(--color-card-bg); /* Fondo blanco */
+  border: 2px solid var(--color-error); /* Bordes rojos */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra */
+  padding: 15px; /* Compactar espacio interno */
+  text-align: center;
+  width: 250px; /* Modal más estrecho */
+  animation: fadeIn 0.3s ease; /* Animación */
+  position: relative; /* Para posicionar el botón de cierre */
+}
+
+/* Contenedor de botones en línea */
+#confirmDeleteModal .modal-content div {
+  display: flex; /* Flexbox para organizar en línea */
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+  gap: 10px; /* Espaciado uniforme entre los botones */
+  margin-top: 10px; /* Separación del texto */
+}
+
+/* Texto del mensaje */
+#confirmDeleteModal p {
+  font-size: 16px; /* Texto más pequeño */
+  color: var(--color-dark-grey-1); /* Gris oscuro */
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+#confirmDeleteModal .confirm-button,
+#confirmDeleteModal .cancel-button {
+  padding: 6px 12px; /* Más pequeños */
+  font-size: 12px; /* Texto más pequeño */
+  border-radius: 3px; /* Bordes ligeramente redondeados */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none;
+  color: white;
+  min-width: 80px; /* Ancho mínimo para uniformidad */
+  text-align: center; /* Centrar texto dentro del botón */
+}
+
+/* Botón confirmar - Eliminar */
+#confirmDeleteModal .confirm-button {
+  background-color: var(--color-error); /* Rojo */
+}
+
+/* Botón cancelar */
+#confirmDeleteModal .cancel-button {
+  background-color: var(--color-cancel);
+}
+
+/* Botón de cerrar (X) */
+#confirmDeleteModal .close {
+  position: absolute;
+  top: 8px; /* Más cercano al borde */
+  right: 12px;
+  color: var(--color-dark-grey-2);
+  font-size: 20px; /* Más pequeño */
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#confirmDeleteModal .close:hover {
+  color: var(--color-light-grey-1);
+}
+
+#confirmDeleteModal .confirm-button:hover,
+#confirmDeleteModal .cancel-button:hover {
+  transition: background-color 0.3s ease;
+}
+
+
+/* Modal de éxito */
+#successModal .modal-content {
+  background-color: var(--color-card-bg); /* Fondo blanco */
+  color: var(--color-text-main); /* Texto principal */
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px; /* Tamaño fijo */
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra elegante */
+  position: relative;
+}
+
+#successModal .close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  color: var(--color-dark-grey-2);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#successModal .close:hover {
+  color: var(--color-light-grey-1);
+}
